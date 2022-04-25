@@ -16,6 +16,7 @@ COPY supervisord.conf /etc/supervisord.conf
 # Prepare app
 WORKDIR /app
 COPY . /app
+COPY .env.docker .env
 RUN composer install --no-dev
 RUN mkdir /app/storage \
     && mkdir /app/storage/logs \
@@ -24,6 +25,7 @@ RUN mkdir /app/storage \
     && mkdir /app/storage/framework/cache \
     && mkdir /app/storage/framework/views \
     && chown www-data:www-data /app/storage -R
+RUN php artisan key:generate
 
 # Default command
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
