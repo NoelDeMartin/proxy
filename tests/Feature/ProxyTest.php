@@ -1,6 +1,7 @@
 <?php
 
 use function Pest\Faker\faker;
+use function Pest\Laravel\post;
 
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
@@ -13,7 +14,7 @@ test('it works', function () {
     Http::fake(['*' => Http::response($html)]);
 
     // Act
-    $response = $this->post('/', compact('url'));
+    $response = post('/', compact('url'));
 
     // Assert
     Http::assertSent(fn (Request $request) => $request->url() === $url);
