@@ -1,12 +1,14 @@
 <?php
 
+use function Pest\Faker\faker;
+
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
 
 test('it works', function () {
     // Arrange
-    $url = 'https://example.com';
-    $html = '<h1>Example page title</h1><p>Example page content</p>';
+    $url = faker()->url;
+    $html = faker()->randomHtml;
 
     Http::fake(['*' => Http::response($html)]);
 
