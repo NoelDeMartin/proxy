@@ -1,10 +1,23 @@
 #!/usr/bin/env bash
 
+is_running=$(proxy-docker-compose ps --quiet | head -n 1)
+
+# Abort on errors
+set -e
+
+# Update
 git pull
-docker-compose -f docker-compose.prod.yml build
-./restart.sh
-docker-compose -f docker-compose.prod.yml exec app php artisan view:clear
-docker-compose -f docker-compose.prod.yml exec app php artisan config:cache
-docker-compose -f docker-compose.prod.yml exec app php artisan route:cache
+proxy-docker-compose build
+
+if [ -z $is_running ]; then
+    proxy-docker-compose run app php artisan view:clear
+    proxy-docker-compose run app php artisan config:cache
+    proxy-docker-compose run app php artisan route:cache
+else
+    proxy-cli restart
+    proxy-docker-compose exec app php artisan view:clear
+    proxy-docker-compose exec app php artisan config:cache
+    proxy-docker-compose exec app php artisan route:cache
+fi
 
 echo "Updated successfully!"
