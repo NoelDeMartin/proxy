@@ -1,0 +1,12 @@
+{
+    "vsicons.associations.files": [
+        {
+            "icon": "docker",
+            "format": "svg",
+            "filename": true,
+            "extensions": [
+                "docker-compose.prod.yml",
+            ]
+        },
+    ]
+}
