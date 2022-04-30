@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+function proxy-docker-compose() {
+    docker-compose -f $base_dir/docker-compose.prod.yml $@
+}
+
+function proxy-cli() {
+    $base_dir/proxy $@
+}
+
+export base_dir=`cd $(readlink -f $0 | xargs dirname) && pwd`
+export scripts_dir="$base_dir/scripts"
+export -f proxy-docker-compose
+export -f proxy-cli
+
+command=$1
+
+case "$command" in
+    'help' | '' )
+        echo 'proxy install          | initialize app files'
+        echo 'proxy start            | start app services'
+        echo 'proxy restart          | restart app services'
+        echo 'proxy stop             | stop app services'
+        echo 'proxy update           | update app and restart'
+        echo 'proxy set-permissions  | update file permissions'
+        echo 'proxy docker-compose   | run docker-compose command'
+        ;;
+    'start' )
+        proxy-docker-compose up -d
+        ;;
+    'stop' )
+        proxy-docker-compose down
+        ;;
+    'restart' )
+        proxy-cli start
+        proxy-cli stop
+        ;;
+    'docker-compose' )
+        proxy-docker-compose ${@:2}
+        ;;
+    'install' | 'update' | 'set-permissions' )
+        $scripts_dir/$command.sh ${@:2}
+        ;;
+    * )
+        echo "Unknown command '$command'"
+        ;;
+esac
