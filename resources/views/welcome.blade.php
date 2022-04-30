@@ -6,7 +6,7 @@
 
         <title>@lang('ui.title')</title>
 
-        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="/css/main.css" rel="stylesheet">
     </head>
     <body class="antialiased">
         <div class="justify-center flex items-center w-screen h-screen">

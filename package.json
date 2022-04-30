@@ -1,0 +1,11 @@
+{
+  "name": "proxy",
+  "private": "true",
+  "scripts": {
+    "dev": "tailwindcss -i ./resources/css/main.css -o ./public/css/main.css --watch",
+    "prod": "tailwindcss -i ./resources/css/main.css -o ./public/css/main.css --minify"
+  },
+  "dependencies": {
+    "tailwindcss": "^3.0.24"
+  }
+}
