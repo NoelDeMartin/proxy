@@ -3,18 +3,22 @@ services:
     app:
         image: noeldemartin/proxy
         volumes:
-            - './storage:/app/storage'
-            - './.env:/app/.env'
+            - ./storage:/app/storage
+            - ./.env:/app/.env
+            - public-assets:/app/public
     nginx:
       image: nginx
       command: /etc/nginx/start.sh
       environment:
         - APP_URL=$APP_URL
       ports:
-        - '80:80'
-        - '443:443'
+        - 80:80
+        - 443:443
       volumes:
-        - './docker/nginx/start.sh:/etc/nginx/start.sh'
-        - './docker/nginx/proxy.conf.template:/etc/nginx/templates/proxy.conf.template'
-        - './public:/var/www/html'
-        - '/etc/letsencrypt:/etc/letsencrypt'
+        - ./docker/nginx/start.sh:/etc/nginx/start.sh
+        - ./docker/nginx/proxy.conf.template:/etc/nginx/templates/proxy.conf.template
+        - /etc/letsencrypt:/etc/letsencrypt
+        - public-assets:/var/www/html:ro
+
+volumes:
+  public-assets:
