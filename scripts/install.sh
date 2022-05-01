@@ -55,7 +55,7 @@ sed s/APP_URL=/APP_URL=$ESCAPED_APP_URL/g -i .env
 sed s/CORS_ORIGINS=/CORS_ORIGINS=$ESCAPED_CORS_ORIGINS/g -i .env
 
 # Prepare storage
-proxy-cli set-permissions
+proxy-cli chown
 proxy-docker-compose run app php artisan key:generate
 proxy-docker-compose run app php artisan config:cache
 proxy-docker-compose run app php artisan event:cache

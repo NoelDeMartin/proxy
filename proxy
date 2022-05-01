@@ -29,8 +29,8 @@ case "$command" in
         echo 'proxy restart          | restart app services'
         echo 'proxy stop             | stop app services'
         echo 'proxy update           | update app and restart'
-        echo 'proxy set-permissions  | update file permissions'
-        echo 'proxy shell {service?} | run docker-compose command'
+        echo 'proxy chown            | set permissions for storage'
+        echo 'proxy shell {service?} | open shell in a running container'
         echo 'proxy docker-compose   | run docker-compose command'
         ;;
     'start' )
@@ -46,7 +46,7 @@ case "$command" in
     'docker-compose' )
         proxy-docker-compose ${@:2}
         ;;
-    'install' | 'update' | 'set-permissions' | 'shell' )
+    'install' | 'update' | 'chown' | 'shell' )
         $scripts_dir/$command.sh ${@:2}
         ;;
     * )
