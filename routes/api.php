@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ProxyController;
+use App\Http\Controllers\FetchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/', ProxyController::class);
+Route::post('/fetch', FetchController::class);

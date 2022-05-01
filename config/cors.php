@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'paths' => ['/'],
+    'paths' => ['/fetch'],
 
     'allowed_methods' => ['POST'],
 

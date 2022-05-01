@@ -14,7 +14,7 @@ test('it works', function () {
     Http::fake(['*' => Http::response($html)]);
 
     // Act
-    $response = post('/', compact('url'));
+    $response = post('/fetch', compact('url'));
 
     // Assert
     Http::assertSent(fn (Request $request) => $request->url() === $url);
