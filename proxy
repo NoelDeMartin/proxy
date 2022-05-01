@@ -40,8 +40,8 @@ case "$command" in
         proxy-docker-compose down
         ;;
     'restart' )
-        proxy-cli start
         proxy-cli stop
+        proxy-cli start
         ;;
     'docker-compose' )
         proxy-docker-compose ${@:2}
