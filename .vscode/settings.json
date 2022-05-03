@@ -4,9 +4,9 @@
             "icon": "docker",
             "format": "svg",
             "filename": true,
-            "extensions": [
-                "docker-compose.prod.yml",
-            ]
-        },
-    ]
+            "extensions": ["docker-compose.prod.yml"]
+        }
+    ],
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
 }

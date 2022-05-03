@@ -4,5 +4,5 @@ test('it works', function () {
     $response = $this->get('/');
 
     $response->assertStatus(200);
-    $response->assertSee('Welcome to Proxy');
+    $response->assertSee('This website is a proxy that can be used to read content from the web');
 });
