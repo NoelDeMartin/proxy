@@ -95,6 +95,11 @@ if [[ $USE_NGINX_AGORA == y ]]; then
     nginx-agora install "$base_dir/nginx-agora/$APP_DOMAIN.conf" "$base_dir/public" proxy
 fi
 
+# Prepare assets
+if [[ proxy_is_headless && ! -d "$base_dir/public" ]]; then
+    mkdir "$base_dir/public"
+fi
+
 # Prepare storage
 proxy-cli chown
 proxy-docker-compose run app php artisan key:generate

@@ -18,11 +18,8 @@ if ! proxy_is_running; then
     exit
 fi
 
-if [ -d "$base_dir/public" ]; then
-    rm "$base_dir/public" -rf
-fi
-
 containerid=`proxy-docker-compose ps --quiet app`
 containername=`docker ps --filter "id=$containerid" --format="{{.Names}}"`
 
-docker cp "$containername:/app/public" "$base_dir/public"
+rm $base_dir/public/* -rf
+docker cp "$containername:/app/public/." "$base_dir/public"
