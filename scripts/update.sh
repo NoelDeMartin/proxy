@@ -10,13 +10,17 @@ fi
 set -e
 
 # Pull new code
-git pull
+git -C $base_dir pull
 
 # Update nginx-agora
 # TODO if nginx-agora is configured, regenerate and copy nginx config
 
 # Update containers
-proxy-docker-compose build
+if proxy_is_headless; then
+    proxy-docker-compose pull
+else
+    proxy-docker-compose build
+fi
 
 if proxy_is_running; then
     proxy-cli restart
