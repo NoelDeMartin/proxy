@@ -1,0 +1,16 @@
+version: '3'
+services:
+    app:
+        build: .
+        volumes:
+            - ./storage:/app/storage
+            - ./.env:/app/.env
+        networks:
+            default:
+                aliases:
+                    - proxy
+
+networks:
+    default:
+        external:
+            name: nginx-agora

@@ -6,7 +6,7 @@ if [[ $(type -t proxy-cli) != function ]]; then
     exit;
 fi
 
-WWWDATA_UID=`docker-compose -f docker-compose.prod.yml run app id -u www-data | tail -n 1 | sed 's/\r$//'`
+WWWDATA_UID=`proxy-docker-compose run app id -u www-data | tail -n 1 | sed 's/\r$//'`
 
 if [ -z $WWWDATA_UID ]; then
     echo "Could not set permissions"

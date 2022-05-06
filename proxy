@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
 function proxy-docker-compose() {
-    docker-compose -f $base_dir/docker-compose.prod.yml $@
+    if proxy_is_using_nginx_agora; then
+        docker-compose -f $base_dir/docker-compose.nginx-agora.yml $@
+    else
+        docker-compose -f $base_dir/docker-compose.prod.yml $@
+    fi
 }
 
 function proxy-cli() {
@@ -20,12 +24,19 @@ function proxy_is_headless() {
     fi
 }
 
+function proxy_is_using_nginx_agora() {
+    if [ ! -d "$base_dir/nginx-agora" ]; then
+        false
+    fi
+}
+
 export base_dir=`cd $(readlink -f $0 | xargs dirname) && pwd`
 export scripts_dir="$base_dir/scripts"
 export -f proxy-docker-compose
 export -f proxy-cli
 export -f proxy_is_running
 export -f proxy_is_headless
+export -f proxy_is_using_nginx_agora
 
 command=$1
 
