@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+if [[ $(type -t proxy-cli) != function ]]; then
+    echo "Don't call scripts directly, use the proxy binary!"
+
+    exit;
+fi
+
 function ask_url() {
     while
         echo "What's the base url of your application?"

@@ -14,11 +14,18 @@ function proxy_is_running() {
     fi
 }
 
+function proxy_is_headless() {
+    if [ -d "$base_dir/app" ]; then
+        false
+    fi
+}
+
 export base_dir=`cd $(readlink -f $0 | xargs dirname) && pwd`
 export scripts_dir="$base_dir/scripts"
 export -f proxy-docker-compose
 export -f proxy-cli
 export -f proxy_is_running
+export -f proxy_is_headless
 
 command=$1
 
@@ -30,11 +37,9 @@ case "$command" in
         echo 'proxy stop             | stop app services'
         echo 'proxy update           | update app and restart'
         echo 'proxy chown            | set permissions for storage'
+        echo 'proxy publish-assets   | publish assets into /public folder'
         echo 'proxy shell {service?} | open shell in a running container'
         echo 'proxy docker-compose   | run docker-compose command'
-        ;;
-    'start' )
-        proxy-docker-compose up -d
         ;;
     'stop' )
         proxy-docker-compose down
@@ -46,7 +51,7 @@ case "$command" in
     'docker-compose' )
         proxy-docker-compose ${@:2}
         ;;
-    'install' | 'update' | 'chown' | 'shell' )
+    'install' | 'start' | 'update' | 'chown' | 'publish-assets' | 'shell' )
         $scripts_dir/$command.sh ${@:2}
         ;;
     * )

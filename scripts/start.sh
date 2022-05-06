@@ -6,12 +6,8 @@ if [[ $(type -t proxy-cli) != function ]]; then
     exit;
 fi
 
-if ! proxy_is_running; then
-    echo "App is not running!"
+proxy-docker-compose up -d
 
-    exit
+if proxy_is_headless; then
+    proxy-cli publish-assets
 fi
-
-service=${1:-app}
-
-proxy-docker-compose exec $service sh
