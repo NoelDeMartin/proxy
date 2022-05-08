@@ -10,7 +10,7 @@
 @endpush
 
 @section('content')
-    <div class="prose">
+    <div class="prose max-w-none">
         <h1>@lang('ui.fetch.title')</h1>
         <p>@lang('ui.fetch.description')</p>
         <p class="mb-0">@lang('ui.fetch.example')</p>
