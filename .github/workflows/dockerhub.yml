@@ -2,6 +2,12 @@ name: DockerHub
 on: [push]
 jobs:
 
+  # This publishes a development image, to tag an image to be used in production run the following
+  # commands in your machine:
+  # docker pull noeldemartin/proxy:{commit-id}
+  # docker tag noeldemartin/proxy:{commit-id} noeldemartin/proxy:latest
+  # docker push noeldemartin/proxy:latest
+
   publish-image:
     runs-on: ubuntu-latest
     steps:
