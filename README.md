@@ -24,7 +24,7 @@ All these instructions assume that you have installed [Docker](https://www.docke
 
 ## Development
 
-For development, you can clone the repository and serve it using [Laravel Sail](https://laravel.com/docs/sail). Make sure to also compile assets as with `npm`.
+For development, you can clone the repository and serve it using [Laravel Sail](https://laravel.com/docs/sail). Make sure to also compile assets with `npm` and add the domain to `/etc/hosts`.
 
 ```sh
 git clone git@github.com:NoelDeMartin/proxy.git proxy
@@ -33,11 +33,12 @@ cp .env.example .env
 docker run --rm -v "$(pwd):/app" -w /app laravelsail/php81-composer:latest composer install
 ./vendor/bin/sail up -d
 ./vendor/bin/sail artisan key:generate
+sudo -- sh -c -e "echo '127.0.0.1 proxy.test' >> /etc/hosts"
 npm install
 npm run dev
 ```
 
-After running these commands, you should be able to use the app on [http://localhost](http://localhost).
+After running these commands, you should be able to use the app on [http://proxy.test](http://proxy.test).
 
 ## Production
 

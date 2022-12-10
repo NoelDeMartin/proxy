@@ -57,6 +57,10 @@ fi
 trap "clean_up" ERR
 
 function clean_up() {
+    if [ -d "$base_dir/public" ]; then
+        rm $base_dir/public -rf
+    fi
+
     if [ -d "$base_dir/nginx-agora" ]; then
         rm $base_dir/nginx-agora -rf
     fi
@@ -82,6 +86,11 @@ cp .env.prod.example .env
 sed s/APP_URL=/APP_URL=$ESCAPED_APP_URL/g -i .env
 sed s/CORS_ORIGINS=/CORS_ORIGINS=$ESCAPED_CORS_ORIGINS/g -i .env
 
+# Prepare assets
+if [[ proxy_is_headless && ! -d "$base_dir/public" ]]; then
+    mkdir "$base_dir/public"
+fi
+
 # Prepare nginx-agora
 if [[ $USE_NGINX_AGORA == y ]]; then
     APP_DOMAIN=$(echo $APP_URL | sed -E s/https?:\\/\\///g)
@@ -93,11 +102,6 @@ if [[ $USE_NGINX_AGORA == y ]]; then
     sed s/\\[\\[APP_DOMAIN\\]\\]/$APP_DOMAIN/g -i "$base_dir/nginx-agora/$APP_DOMAIN.conf"
 
     nginx-agora install "$base_dir/nginx-agora/$APP_DOMAIN.conf" "$base_dir/public" proxy
-fi
-
-# Prepare assets
-if [[ proxy_is_headless && ! -d "$base_dir/public" ]]; then
-    mkdir "$base_dir/public"
 fi
 
 # Prepare storage
