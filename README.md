@@ -45,7 +45,7 @@ After running these commands, you should be able to use the app on [http://proxy
 This can be deployed using [kanjuro](https://github.com/NoelDeMartin/kanjuro) and [nginx-agora](https://github.com/NoelDeMartin/nginx-agora).
 
 ```sh
-git clone https://github.com/NoelDeMartin/proxy.git  --branch kanjuro --single-branch
+git clone https://github.com/NoelDeMartin/proxy.git --branch kanjuro --single-branch
 cd proxy
 kanjuro install
 
