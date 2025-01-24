@@ -1,10 +1,10 @@
-version: '3'
 services:
     app:
         image: noeldemartin/proxy
         volumes:
             - ./storage:/app/storage
             - ./.env:/app/.env
+        restart: unless-stopped
         networks:
             default:
                 aliases:
@@ -12,5 +12,5 @@ services:
 
 networks:
     default:
-        external:
-            name: nginx-agora
+        name: nginx-agora
+        external: true

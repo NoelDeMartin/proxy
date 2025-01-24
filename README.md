@@ -42,30 +42,15 @@ After running these commands, you should be able to use the app on [http://proxy
 
 ## Production
 
-For production, you can use some the Docker Compose configuration that is included in the repository. It is, however, not straight-forward to use because it has some configuration parameters such as the domain where it will be served from and the allowed origins. It is also integrated with [nginx-agora](https://github.com/noeldemartin/nginx-agora), which I use in my server.
-
-In order to simplify this setup, you can use the `./proxy` binary:
+This can be deployed using [kanjuro](https://github.com/NoelDeMartin/kanjuro) and [nginx-agora](https://github.com/NoelDeMartin/nginx-agora).
 
 ```sh
-git clone git@github.com:NoelDeMartin/proxy.git proxy
+git clone https://github.com/NoelDeMartin/proxy.git  --branch kanjuro --single-branch
 cd proxy
-./proxy install
-./proxy start
+kanjuro install
+
+# Make sure to add the origins you want to allow to CORS_ORIGINS in the .env file
+
+kanjuro start
+nginx-agora start
 ```
-
-Run `./proxy` to see more commands.
-
-## Production (headless)
-
-The code is published in [Docker Hub](https://hub.docker.com/r/noeldemartin/proxy), so if you just want to run the application in the server without modifying any files you can do it in "headless mode". This only means that you won't have the source code checked out in the server, instead you'll only keep the configuration files and folders necessary to run the app using Docker Compose.
-
-This can also be configured using the `./proxy` binary:
-
-```sh
-git clone --branch headless --single-branch git@github.com:NoelDeMartin/proxy.git proxy
-cd proxy
-./proxy install
-./proxy start
-```
-
-Run `./proxy` to see more commands.

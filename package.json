@@ -3,9 +3,9 @@
     "private": "true",
     "scripts": {
         "dev": "tailwindcss -i ./resources/css/main.css -o ./public/css/main.css --watch",
-        "prod": "npm run prod:tailwindcss && npm run prod:prism",
-        "prod:prism": "cp ./resources/css/prism.css ./public/css/prism.css",
-        "prod:tailwindcss": "tailwindcss -i ./resources/css/main.css -o ./public/css/main.css --minify"
+        "build": "npm run build:tailwindcss && npm run build:prism",
+        "build:prism": "cp ./resources/css/prism.css ./public/css/prism.css",
+        "build:tailwindcss": "tailwindcss -i ./resources/css/main.css -o ./public/css/main.css --minify"
     },
     "dependencies": {
         "tailwindcss": "^3.0.24"
