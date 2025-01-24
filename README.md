@@ -1,3 +1,3 @@
-# Proxy (headless)
+# Proxy (kanjuro)
 
-This branch is only used to host the app in headless mode, you can read the documentation in [the main branch](https://github.com/NoelDeMartin/proxy).
+The code in this folder is intended to be used for deployment with [kanjuro](https://github.com/NoelDeMartin/kanjuro). The `kanjuro` branch is [generated automatically](https://github.com/NoelDeMartin/proxy/tree/main/.github/workflows/kanjuro.yml). You can learn how to work with the project by reading the documentation in [the `main` branch](https://github.com/NoelDeMartin/proxy).
