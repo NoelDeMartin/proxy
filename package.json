@@ -11,11 +11,11 @@
         "lint:check": "vp lint ."
     },
     "dependencies": {
-        "tailwindcss": "^4.1.1"
+        "tailwindcss": "^4.3.3"
     },
     "devDependencies": {
         "@tailwindcss/typography": "^0.5.16",
-        "@tailwindcss/vite": "^4.1.11",
+        "@tailwindcss/vite": "^4.3.3",
         "concurrently": "^9.0.1",
         "laravel-vite-plugin": "^3.0.0",
         "vite": "npm:@voidzero-dev/vite-plus-core@latest",
