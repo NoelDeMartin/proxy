@@ -1,18 +1,25 @@
 {
-    "name": "proxy",
-    "private": "true",
+    "$schema": "https://www.schemastore.org/package.json",
+    "private": true,
+    "type": "module",
     "scripts": {
-        "dev": "tailwindcss -i ./resources/css/main.css -o ./public/css/main.css --watch",
-        "build": "npm run build:tailwindcss && npm run build:prism",
-        "build:prism": "cp ./resources/css/prism.css ./public/css/prism.css",
-        "build:tailwindcss": "tailwindcss -i ./resources/css/main.css -o ./public/css/main.css --minify"
+        "build": "vp build",
+        "dev": "vp dev",
+        "format": "vp fmt resources/",
+        "format:check": "vp fmt --check resources/",
+        "lint": "vp lint . --fix",
+        "lint:check": "vp lint ."
     },
     "dependencies": {
-        "tailwindcss": "^3.0.24"
+        "tailwindcss": "^4.1.1"
     },
     "devDependencies": {
-        "@tailwindcss/typography": "^0.5.2",
-        "prettier": "^2.6.2",
-        "prettier-plugin-tailwindcss": "^0.1.10"
-    }
+        "@tailwindcss/typography": "^0.5.16",
+        "@tailwindcss/vite": "^4.1.11",
+        "concurrently": "^9.0.1",
+        "laravel-vite-plugin": "^3.0.0",
+        "vite": "npm:@voidzero-dev/vite-plus-core@latest",
+        "vite-plus": "latest"
+    },
+    "packageManager": "pnpm@11.25.0"
 }

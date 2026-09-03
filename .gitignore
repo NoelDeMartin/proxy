@@ -1,8 +1,12 @@
+/.phpunit.cache
+/.pnpm-store
 /node_modules
 /public/hot
 /public/storage
+/public/build
 /public/css
 /storage/*.key
+/storage/pail
 /vendor
 .env
 .env.backup

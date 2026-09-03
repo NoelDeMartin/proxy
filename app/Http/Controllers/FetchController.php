@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Http;
 
 class FetchController extends Controller
 {
-    public function __invoke(ProxyRequest $request) {
+    public function __invoke(ProxyRequest $request)
+    {
         return Http::get($request->get('url'));
     }
 }

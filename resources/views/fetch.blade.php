@@ -6,7 +6,7 @@
 @endphp
 
 @push('styles')
-    <link href="/css/prism.css" rel="stylesheet" />
+    @vite(['resources/css/prism.css'])
 @endpush
 
 @section('content')

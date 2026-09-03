@@ -5,9 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>@lang('ui.title')</title>
 
-        {{-- TODO implement cache-busting --}}
-        <link href="/css/main.css" rel="stylesheet" />
-
+        @vite(['resources/css/main.css'])
         @stack('styles')
     </head>
     <body class="bg-gray-100 antialiased">
