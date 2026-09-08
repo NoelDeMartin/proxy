@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProxyRequest;
 use App\Support\Fetcher;
+use App\Support\SecurityHeaders;
 use Illuminate\Http\Response;
 
 class FetchController extends Controller
@@ -12,11 +13,9 @@ class FetchController extends Controller
     {
         $upstream = $fetcher->fetch($request->string('url')->toString());
 
-        return response($upstream->body(), $upstream->status())->withHeaders([
+        return SecurityHeaders::untrusted($upstream->body(), $upstream->status(), [
             'Content-Type' => $upstream->header('Content-Type') ?: 'text/html',
             'Content-Disposition' => 'attachment',
-            'Content-Security-Policy' => 'sandbox',
-            'X-Content-Type-Options' => 'nosniff',
         ]);
     }
 }
