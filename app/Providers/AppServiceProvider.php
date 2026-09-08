@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $allowedOrigins = config('cors.allowed_origins');
 
-        if ($this->app->isProduction() && is_array($allowedOrigins) && in_array('*', $allowedOrigins, true)) {
+        if (! $this->app->runningInConsole() && $this->app->isProduction() && is_array($allowedOrigins) && in_array('*', $allowedOrigins, true)) {
             throw new \RuntimeException('Wildcard origins are not allowed in production, please configure CORS_ORIGINS in your .env file.');
         }
 
