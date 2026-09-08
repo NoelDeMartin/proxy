@@ -22,6 +22,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $allowedOrigins = config('cors.allowed_origins');
+
+        if ($this->app->isProduction() && is_array($allowedOrigins) && in_array('*', $allowedOrigins, true)) {
+            throw new \RuntimeException('Wildcard origins are not allowed in production, please configure CORS_ORIGINS in your .env file.');
+        }
+
         RateLimiter::for('api', function (Request $request) {
             $limit = Limit::perMinutes(10, config()->integer('rate_limiting.requests'));
 
